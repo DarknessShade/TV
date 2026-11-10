@@ -1,52 +1,54 @@
-// A simple service worker for basic caching
+const VERSION = 'v1';
+const SHELL = `shell-${VERSION}`;
+const DATA = `data-${VERSION}`;
+const SHELL_URLS = ['./', './index.html', './manifest.json'];
 
-const CACHE_NAME = 'darkness-tv-cache-v2'; // Version updated to ensure new cache
-const urlsToCache = [
-  '/',
-  '/index.html',
-  'https://raw.githubusercontent.com/darknessm427/darknessm427/main/Image/tv.png?raw=true'
-  // You can add more assets here to be cached, like CSS, JS, or images.
-];
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(SHELL).then(c => c.addAll(SHELL_URLS)).catch(() => {}).then(() => self.skipWaiting()));
+});
 
-// Install event: opens the cache and adds the core files.
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => {
-        console.log('Opened cache');
-        return cache.addAll(urlsToCache);
-      })
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => ![SHELL, DATA].includes(k)).map(k => caches.delete(k))))
+      .then(() => self.clients.claim())
   );
 });
 
-// Activate event: remove old caches
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.filter(cacheName => {
-          return cacheName.startsWith('darkness-tv-cache-') && cacheName !== CACHE_NAME;
-        }).map(cacheName => {
-          return caches.delete(cacheName);
-        })
-      );
-    })
-  );
-});
+const networkFirst = async (req, cacheName) => {
+  const cache = await caches.open(cacheName);
+  try {
+    const res = await fetch(req);
+    if (res.ok) cache.put(req, res.clone());
+    return res;
+  } catch (err) {
+    return (await cache.match(req)) || (await cache.match('./index.html')) || Response.error();
+  }
+};
 
+const staleWhileRevalidate = async (req, cacheName) => {
+  const cache = await caches.open(cacheName);
+  const cached = await cache.match(req);
+  const fresh = fetch(req).then(res => { if (res.ok) cache.put(req, res.clone()); return res; }).catch(() => null);
+  return cached || (await fresh) || Response.error();
+};
 
-// Fetch event: serves content from cache if available.
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => {
-        // Cache hit - return response
-        if (response) {
-          return response;
-        }
-        // Not in cache - fetch from network
-        return fetch(event.request);
-      }
-    )
-  );
+self.addEventListener('fetch', e => {
+  const req = e.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+
+  // page navigations: network first, offline fallback
+  if (req.mode === 'navigate') return e.respondWith(networkFirst(req, SHELL));
+
+  // our own static files
+  if (url.origin === location.origin) return e.respondWith(staleWhileRevalidate(req, SHELL));
+
+  // big iptv-org catalogue: instant from cache, refreshed in background
+  if (url.hostname === 'iptv-org.github.io') return e.respondWith(staleWhileRevalidate(req, DATA));
+
+  // Iranian channel list: always try fresh first (servers change often)
+  if (url.hostname === 'raw.githubusercontent.com' && url.pathname.includes('/FaTv/')) return e.respondWith(networkFirst(req, DATA));
+
+  // everything else (video streams, images, CDNs) goes straight to the network
 });
