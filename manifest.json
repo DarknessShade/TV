@@ -1,23 +1,18 @@
 {
-  "name": "ÐΛɌ₭ᑎΞ𐒡𐒡 𝕋𝕍",
+  "id": "./",
+  "name": "Darkness TV",
   "short_name": "Darkness TV",
-  "description": "پخش زنده شبکه‌های تلویزیونی از سراسر جهان",
-  "start_url": ".",
+  "description": "پخش زنده شبکه‌های تلویزیونی ایرانی و جهانی",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0a0a0a",
   "theme_color": "#0a0a0a",
+  "categories": ["entertainment"],
   "icons": [
-    {
-      "src": "https://raw.githubusercontent.com/darknessm427/darknessm427/main/Image/tv.png?raw=true",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "https://raw.githubusercontent.com/darknessm427/darknessm427/main/Image/tv.png?raw=true",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    }
+    { "src": "https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
   ]
 }
