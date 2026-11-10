@@ -12,7 +12,6 @@
   "theme_color": "#0a0a0a",
   "categories": ["entertainment"],
   "icons": [
-    { "src": "https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
-  ]
+  { "src": "assets/icotv.png", "sizes": "192x192 512x512", "type": "image/png", "purpose": "any" }
+]
 }
