@@ -6,7 +6,7 @@
 
 <p align="center" >
    <img  width="60%"  src="https://rand-xyz.now.sh/api/hello" />  
-   <img  width="60%"  src="https://raw.githubusercontent.com/darknessm427/Tv-Channels/main/tv.jpg" />
+   <img  width="60%"  src="https://raw.githubusercontent.com/darknessshade/Tv/main/tv.jpg" />
    <img  width="60%"  src="https://rand-xyz.now.sh/api/hello" />  
 </p> 
 
