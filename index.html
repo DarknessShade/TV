@@ -2,30 +2,57 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÐΛɌ₭ᑎΞ𐒡𐒡🗽𝕋𝕍</title>
-    
-    <link rel="manifest" href="manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>ÐΛɌ₭ᑎΞ𐒡𐒡 TV | پخش زنده شبکه‌های تلویزیونی</title>
+    <meta name="description" content="پخش زنده شبکه‌های تلویزیونی ایرانی و جهانی با چند سرور و تغییر خودکار سرور. قابل نصب روی iOS، اندروید و اندروید TV.">
+    <meta name="application-name" content="Darkness TV">
+    <meta name="color-scheme" content="dark light">
     <meta name="theme-color" content="#0a0a0a">
+    <meta name="format-detection" content="telephone=no">
 
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/DarknessShade/DarknessShade/main/Image/tv.png?raw=true">
-    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- iOS PWA -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="Darkness TV">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png">
+    <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png">
+
+    <!-- Social preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Darkness TV | پخش زنده شبکه‌های تلویزیونی">
+    <meta property="og:description" content="پخش زنده شبکه‌های ایرانی و جهانی؛ قابل نصب روی iOS، اندروید و اندروید TV.">
+    <meta property="og:image" content="https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png">
+    <meta name="twitter:card" content="summary">
+
+    <!-- Faster connections -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://iptv-org.github.io" crossorigin>
+    <link rel="preconnect" href="https://raw.githubusercontent.com" crossorigin>
+    <link rel="dns-prefetch" href="https://flagcdn.com">
+    <link rel="dns-prefetch" href="https://flagofiran.com">
+
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.17/dist/hls.min.js" defer></script>
+
     <style>
         :root {
             --bg-primary: #0a0a0a;
             --bg-secondary: #1a1a1a;
             --text-primary: #e5e7eb;
             --text-secondary: #9ca3af;
-            --accent-primary: #00ffff; /* Cyan - Default */
-            --accent-secondary: #ff00ff; /* Magenta */
+            --accent-primary: #016464; /* Cyan - Default */
+            --accent-secondary: #151515;
             --border-color: rgba(255, 255, 255, 0.15);
             --shadow-color: rgba(0, 255, 255, 0.3);
             --highlight-bg: rgba(0, 255, 255, 0.1);
@@ -217,6 +244,122 @@
             background-repeat: no-repeat;
             background-size: 1.25em;
         }
+
+        /* ===== Glassmorphism ===== */
+        .bg-blobs { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; contain: strict; }
+        .bg-blobs i { position: absolute; border-radius: 50%; will-change: transform; animation: blobFloat 32s ease-in-out infinite alternate; }
+        .bg-blobs i:nth-child(1) { width: 52vmax; height: 52vmax; top: -24vmax; right: -20vmax;
+            background: radial-gradient(circle, rgba(var(--accent-primary-rgb), .14) 0%, rgba(var(--accent-primary-rgb), .05) 42%, transparent 70%); }
+        .bg-blobs i:nth-child(2) { width: 44vmax; height: 44vmax; bottom: -20vmax; left: -16vmax; animation-delay: -10s;
+            background: radial-gradient(circle, rgba(70, 50, 150, .12) 0%, transparent 70%); }
+        .bg-blobs i:nth-child(3) { width: 30vmax; height: 30vmax; top: 40%; left: 40%; animation-delay: -18s;
+            background: radial-gradient(circle, rgba(59, 130, 246, .06) 0%, transparent 70%); }
+        body.light-theme .bg-blobs i:nth-child(1) { background: radial-gradient(circle, rgba(var(--accent-primary-rgb), .16) 0%, transparent 70%); }
+        body.light-theme .bg-blobs i:nth-child(2) { background: radial-gradient(circle, rgba(111, 66, 193, .12) 0%, transparent 70%); }
+        @keyframes blobFloat { to { transform: translate3d(5vmax, 3vmax, 0) scale(1.1); } }
+        .glass-effect, body:not(.light-theme) .glass-effect {
+            background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+            backdrop-filter: blur(22px) saturate(170%); -webkit-backdrop-filter: blur(22px) saturate(170%);
+            box-shadow: 0 8px 32px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.25);
+        }
+        body.light-theme .glass-effect { background: rgba(255,255,255,.55); border-color: rgba(255,255,255,.8); box-shadow: 0 8px 32px rgba(31,38,135,.15), inset 0 1px 0 #fff; }
+        nav.sticky { background: rgba(255,255,255,.06) !important; backdrop-filter: blur(22px) saturate(170%); -webkit-backdrop-filter: blur(22px) saturate(170%); }
+        body.light-theme nav.sticky { background: rgba(255,255,255,.5) !important; }
+        #channelSearch, .player-select { background-color: rgba(255,255,255,.08) !important; backdrop-filter: blur(10px); }
+        .skeleton-card { background: rgba(255,255,255,.06); }
+        .filter-btn { background: rgba(255,255,255,.06); backdrop-filter: blur(10px); }
+        .badge-vpn { position: absolute; top: 8px; right: 8px; font-size: 9px; padding: 1px 6px; border-radius: 999px; background: rgba(220,53,69,.25); color: #ff6b7a; border: 1px solid rgba(220,53,69,.5); }
+        .srv { padding: .3rem .8rem; border-radius: 999px; font-size: .75rem; color: var(--text-primary); border: 1px solid var(--border-color); background: rgba(255,255,255,.08); backdrop-filter: blur(10px); transition: all .2s; }
+        .srv:hover { border-color: var(--accent-primary); }
+        .srv.active { background: var(--highlight-bg); border-color: var(--accent-primary); color: var(--accent-primary); box-shadow: 0 0 12px var(--shadow-color); }
+        .srv.failed { opacity: .45; text-decoration: line-through; }
+        #playerStatus:empty { display: none; }
+        #playerStatus { display: flex; align-items: center; gap: .5rem; padding: .5rem .9rem; border-radius: .75rem; font-size: .8rem; background: rgba(255,255,255,.08); border: 1px solid var(--border-color); }
+
+        /* ===== v2: smoothness, performance, new components ===== */
+        :root { --ease: cubic-bezier(.22, 1, .36, 1); }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        body { -webkit-tap-highlight-color: transparent; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+               transition: background-color .5s var(--ease), color .5s var(--ease); }
+        nav.sticky { padding-top: calc(1rem + env(safe-area-inset-top)); }
+        .glass-effect { transition: background-color .4s var(--ease), border-color .3s ease, box-shadow .4s var(--ease); }
+
+        /* cards: no per-card backdrop blur (very expensive with hundreds of cards) */
+        body .channel-card.glass-effect, body .recording-card.glass-effect, body #moreBtn.glass-effect {
+            -webkit-backdrop-filter: none; backdrop-filter: none;
+            background: rgba(255,255,255,.065);
+            box-shadow: 0 2px 10px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.12);
+        }
+        body.light-theme .channel-card.glass-effect, body.light-theme .recording-card.glass-effect, body.light-theme #moreBtn.glass-effect {
+            background: rgba(255,255,255,.75); box-shadow: 0 2px 10px rgba(31,38,135,.1), inset 0 1px 0 #fff;
+        }
+
+        .channel-card, .recording-card {
+            transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .25s ease;
+        }
+        .channel-card:hover, .recording-card:hover { transform: none; }
+        @media (hover: hover) {
+            .channel-card:hover, .recording-card:hover { transform: translateY(-4px) scale(1.02); }
+        }
+        .channel-card:active { transform: scale(.97); transition-duration: .12s; }
+        .channel-card {
+            isolation: isolate; overflow: hidden;
+            content-visibility: auto; contain-intrinsic-size: auto 9rem;
+            animation: cardIn .45s var(--ease) both; animation-delay: calc(var(--i, 0) * 26ms);
+        }
+        @keyframes cardIn { from { opacity: 0; transform: translateY(10px) scale(.98); } to { opacity: 1; transform: none; } }
+
+        /* country flag as a soft halo behind each channel card */
+        .channel-card[data-flag]::before {
+            content: ""; position: absolute; inset: -6%; z-index: -1; pointer-events: none;
+            background: var(--flag) center / cover no-repeat;
+            opacity: .2; filter: blur(2px) saturate(1.15);
+            transition: opacity .4s var(--ease), transform .6s var(--ease);
+        }
+        @media (hover: hover) { .channel-card[data-flag]:hover::before { opacity: .3; transform: scale(1.06); } }
+
+        /* menu / modal / accordions */
+        #sideMenu { will-change: transform; }
+        #menuOverlay { transition: opacity .35s ease; }
+        .menu-item, #sideMenu button { transition: background-color .2s ease, color .2s ease; }
+        #playerModal:not(.hidden) { animation: fadeIn .28s ease both; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        #categoriesAccordionContent:not(.hidden), #countriesAccordionContent:not(.hidden) { animation: accIn .3s var(--ease) both; }
+        @keyframes accIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+        .fa-chevron-down { transition: transform .3s var(--ease); }
+        .filter-btn, .srv, .neon-button { transition: background-color .25s ease, border-color .25s ease, color .25s ease, box-shadow .25s ease, transform .2s var(--ease); }
+        .neon-button:active { transform: scale(.94); }
+
+        /* toast: animate with transform instead of "top" */
+        #toast { top: calc(16px + env(safe-area-inset-top)); opacity: 0; pointer-events: none;
+                 transform: translate(-50%, -160%); transition: transform .5s var(--ease), opacity .3s ease; }
+        #toast.show { top: calc(16px + env(safe-area-inset-top)); opacity: 1; transform: translate(-50%, 0); }
+
+        /* Android app block + footer */
+        .app-link { display: flex; align-items: center; gap: .75rem; padding: .6rem 1rem; border-radius: .75rem; font-weight: 700; font-size: .75rem;
+                    border: 1px solid rgba(61,220,132,.45); color: #3ddc84; background: rgba(61,220,132,.08); transition: background-color .25s ease, box-shadow .25s ease, transform .2s var(--ease); }
+        .app-link:hover { background: rgba(61,220,132,.16); box-shadow: 0 0 14px rgba(61,220,132,.25); }
+        .app-link:active { transform: scale(.97); }
+        body.light-theme .app-link { color: #198754; border-color: rgba(25,135,84,.45); background: rgba(25,135,84,.08); }
+
+        /* iOS install guide */
+        .ios-sheet { position: fixed; inset: 0; z-index: 70; visibility: hidden; transition: visibility 0s linear .35s; }
+        .ios-sheet.open { visibility: visible; transition-delay: 0s; }
+        .ios-sheet-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.6); opacity: 0; transition: opacity .35s ease; }
+        .ios-sheet.open .ios-sheet-backdrop { opacity: 1; }
+        .ios-sheet-panel { position: absolute; left: 0; right: 0; bottom: 0; max-width: 28rem; margin: 0 auto; padding: 1.25rem 1.25rem calc(1.25rem + env(safe-area-inset-bottom));
+                           border-radius: 1.5rem 1.5rem 0 0; transform: translateY(100%); transition: transform .45s var(--ease); }
+        .ios-sheet.open .ios-sheet-panel { transform: none; }
+        .step-n { flex: none; width: 1.75rem; height: 1.75rem; border-radius: 999px; display: flex; align-items: center; justify-content: center;
+                  font-weight: 700; font-size: .8rem; background: var(--highlight-bg); color: var(--accent-primary); border: 1px solid var(--accent-primary); }
+        .ios-banner { position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); z-index: 45; max-width: 26rem; margin: 0 auto;
+                      display: flex; align-items: center; gap: .6rem; padding: .6rem .8rem; border-radius: 1rem; font-size: .75rem;
+                      transform: translateY(160%); transition: transform .5s var(--ease); }
+        .ios-banner.show { transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+        }
     </style>
     
     <script>
@@ -226,6 +369,7 @@
     </script>
 </head>
 <body class="bg-[var(--bg-primary)] text-[var(--text-primary)]">
+    <div class="bg-blobs"><i></i><i></i><i></i></div>
 
     <div id="toast">
         <span class="icon"></span>
@@ -242,7 +386,7 @@
             <div class="text-center">
                  <h1 class="text-2xl md:text-3xl font-bold cursor-pointer flex items-center justify-center gap-1" onclick="location.href=window.location.pathname">
                     <span class="gradient-text">ÐΛɌ₭ᑎ️Ξ𐒡𐒡</span>
-                    <img src="https://raw.githubusercontent.com/DarknessShade/DarknessShade/main/Image/tv.png?raw=true" alt="TV Icon" class="h-8 w-8">
+                    <img src="https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png" alt="TV Icon" class="h-8 w-8 rounded-md" width="32" height="32" decoding="async">
                     <span class="gradient-text">𝕋𝕍</span>
                 </h1>
             </div>
@@ -262,7 +406,11 @@
         </div>
         <div class="flex-grow overflow-y-auto custom-scrollbar">
             <div class="p-2 border-b border-[var(--border-color)]">
-                 <button id="allChannelsBtn" class="w-full flex justify-between items-center px-4 py-3 text-left font-bold hover:bg-[var(--highlight-bg)] transition-colors rounded-lg text-xs">
+                 <button id="iranBtn" class="w-full flex justify-between items-center px-4 py-3 text-left font-bold hover:bg-[var(--highlight-bg)] transition-colors rounded-lg text-xs">
+                    <div class="flex items-center gap-3"><img src="https://flagofiran.com/files/royal/Naval_flag_of_Iran.svg" class="w-5 h-4 rounded-sm object-contain" alt=""><span>شبکه‌های ایرانی</span></div>
+                    <span class="text-xs font-normal text-gray-400 uppercase" dir="ltr">Iran</span>
+                </button>
+                <button id="allChannelsBtn" class="w-full flex justify-between items-center px-4 py-3 text-left font-bold hover:bg-[var(--highlight-bg)] transition-colors rounded-lg text-xs">
                     <div class="flex items-center gap-3"><i class="fas fa-globe-europe w-5 text-center" style="color: var(--accent-primary);"></i><span>همه‌ی کانال‌ها</span></div>
                     <span class="text-xs font-normal text-gray-400 uppercase" dir="ltr">All</span>
                 </button>
@@ -292,6 +440,13 @@
         </div>
         
         <div class="mt-auto">
+            <div class="p-3 border-t border-[var(--border-color)]">
+                <a href="https://github.com/DarkNamaTv/Tv/releases" target="_blank" rel="noopener noreferrer" class="app-link" id="menu-android-link">
+                    <i class="fab fa-android text-2xl"></i>
+                    <span class="flex flex-col leading-tight"><span>نسخه اندروید</span><span class="font-normal opacity-80" dir="ltr">Android &amp; Android TV</span></span>
+                    <i class="fas fa-download mr-auto"></i>
+                </a>
+            </div>
             <div id="install-container" class="p-2 border-t border-[var(--border-color)]" style="display: none;">
                 <div class="flex items-center gap-3 px-4 py-1">
                     <button id="menu-install-btn" class="flex-grow flex items-center gap-3 font-bold text-left p-2 -mr-2 -my-2 hover:bg-[var(--highlight-bg)] rounded-lg transition-colors text-xs">
@@ -302,7 +457,7 @@
                         <i class="fas fa-question-circle text-[var(--text-secondary)] cursor-help text-base"></i>
                         <div id="install-tooltip" class="absolute bottom-full right-0 mb-2 w-72 p-3 rounded-lg glass-effect text-xs shadow-lg opacity-0 invisible transition-opacity duration-300 pointer-events-none z-10">
                             <p class="mb-2">این دکمه در ابتدا غیرفعال (خاکستری) خواهد بود و به محض اینکه مرورگر اجازه نصب را بدهد، به صورت خودکار فعال و قابل کلیک می‌شود.</p>
-                            <p class="font-bold mb-1">همچنین می‌توانید از منوی مرورگر (سه نقطه) گزینه "Add to Home Screen" یا "Install App" را انتخاب کنید.</p>
+                            <p class="font-bold mb-1">همچنین می‌توانید از منوی مرورگر (سه نقطه) گزینه "Add to Home Screen" یا "Install App" را انتخاب کنید.</p><p>در iPhone و iPad: دکمه‌ی اشتراک‌گذاری ← Add to Home Screen.</p>
                         </div>
                     </div>
                 </div>
@@ -317,9 +472,9 @@
             <div class="flex items-center gap-4">
                 <a href="https://t.me/Paradise_Of_Freedom" target="_blank" rel="noopener noreferrer" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors text-xl"><i class="fab fa-telegram"></i></a>
                 <a href="https://x.com/mansor427" target="_blank" rel="noopener noreferrer" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors text-xl"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://github.com/DarknessShade" target="_blank" rel="noopener noreferrer" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors text-xl"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/darknessm427" target="_blank" rel="noopener noreferrer" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors text-xl"><i class="fab fa-github"></i></a>
             </div>
-            <img src="https://github.com/user-attachments/assets/3ec2a5a4-2bec-4af5-a976-e45f985dd63e" alt="لوگو" class="opacity-30 w-1/4">
+            <img src="https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png" alt="لوگو" class="opacity-40 w-8 h-8 rounded-md" decoding="async">
         </div>
     </div>
 
@@ -333,11 +488,7 @@
             </div>
             <div class="glass-effect rounded-xl p-6 space-y-6">
                 <div class="relative"><input type="text" id="channelSearch" class="w-full pl-4 pr-12 py-3 rounded-lg border focus:ring-2 focus:outline-none transition-all bg-[var(--bg-primary)] border-[var(--border-color)] text-[var(--text-primary)] text-sm" style="--tw-ring-color: var(--accent-primary);" placeholder="نام کانال را وارد کنید..."><i class="fas fa-search absolute right-4 top-1/2 -translate-y-1/2 text-[var(--text-secondary)]"></i></div>
-                <div class="flex flex-wrap gap-2 justify-center" id="sourceFilters">
-                    <button onclick="toggleSourceFilter('all')" class="filter-btn active border border-[var(--border-color)] rounded-lg px-4 py-2 transition-all duration-300 text-sm" data-filter="all"><i class="fas fa-border-all mr-2"></i>همه</button>
-                    <button onclick="toggleSourceFilter('iptv')" class="filter-btn border border-[var(--border-color)] rounded-lg px-4 py-2 transition-all duration-300 text-sm" data-filter="iptv"><i class="fas fa-tv mr-2"></i>IPTV</button>
-                    <button onclick="toggleSourceFilter('youtube')" class="filter-btn border border-[var(--border-color)] rounded-lg px-4 py-2 transition-all duration-300 text-sm" data-filter="youtube"><i class="fab fa-youtube mr-2"></i>YouTube</button>
-                </div>
+                <div class="flex flex-wrap gap-2 justify-center" id="sourceFilters"></div>
             </div>
         </div>
         
@@ -349,6 +500,51 @@
         <div id="noResults" class="text-center py-12 hidden"><div class="mb-4 text-[var(--text-secondary)]"><i class="fas fa-search text-4xl"></i></div><h3 class="text-lg font-semibold mb-2">موردی یافت نشد</h3><p class="text-[var(--text-secondary)] text-sm" id="noResultsMessage">لطفاً با عبارت دیگری جستجو کنید</p></div>
     </main>
 
+    <footer class="container mx-auto px-4 pb-10 mt-10">
+        <div class="glass-effect rounded-2xl p-5 max-w-3xl mx-auto flex flex-col sm:flex-row items-center gap-4 justify-between">
+            <div class="flex items-center gap-3">
+                <img src="https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png" alt="Darkness TV" class="w-12 h-12 rounded-xl" width="48" height="48" loading="lazy" decoding="async">
+                <div>
+                    <h3 class="font-bold text-sm">نسخه اندروید و اندروید TV</h3>
+                    <p class="text-xs text-[var(--text-secondary)] mt-1">برنامه را از بخش Releases دانلود و نصب کنید</p>
+                </div>
+            </div>
+            <a href="https://github.com/DarkNamaTv/Tv/releases" target="_blank" rel="noopener noreferrer" class="app-link">
+                <i class="fab fa-android text-xl"></i><i class="fas fa-tv"></i>
+                <span>دانلود برای Android / Android TV</span>
+            </a>
+        </div>
+        <div class="mt-6 flex items-center justify-center gap-5 text-xl text-[var(--text-secondary)]">
+            <a href="https://t.me/Paradise_Of_Freedom" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary)] transition-colors" aria-label="Telegram"><i class="fab fa-telegram"></i></a>
+            <a href="https://x.com/mansor427" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary)] transition-colors" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://github.com/darknessm427" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--accent-primary)] transition-colors" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/DarkNamaTv/Tv/releases" target="_blank" rel="noopener noreferrer" class="hover:text-[#3ddc84] transition-colors" aria-label="Android"><i class="fab fa-android"></i></a>
+        </div>
+    </footer>
+
+    <!-- iOS install banner + guide -->
+    <div id="iosBanner" class="ios-banner glass-effect" role="status">
+        <img src="https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png" alt="" class="w-8 h-8 rounded-lg" width="32" height="32">
+        <span class="flex-grow">برنامه را روی صفحه‌ی اصلی نصب کنید</span>
+        <button onclick="openIosSheet()" class="px-3 py-1.5 rounded-lg border border-[var(--accent-primary)] text-[var(--accent-primary)] text-xs">راهنما</button>
+        <button onclick="dismissIosBanner()" class="w-7 h-7 flex items-center justify-center rounded-full" aria-label="بستن"><i class="fas fa-times"></i></button>
+    </div>
+    <div id="iosSheet" class="ios-sheet" aria-hidden="true">
+        <div class="ios-sheet-backdrop" onclick="closeIosSheet()"></div>
+        <div class="ios-sheet-panel glass-effect">
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3"><img src="https://raw.githubusercontent.com/DarkNamaTv/Tv/main/assets/icotv.png" alt="" class="w-10 h-10 rounded-xl" width="40" height="40"><h3 class="font-bold text-sm">نصب روی iPhone و iPad</h3></div>
+                <button onclick="closeIosSheet()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-[var(--highlight-bg)]" aria-label="بستن"><i class="fas fa-times"></i></button>
+            </div>
+            <ol class="space-y-4 text-sm">
+                <li class="flex items-start gap-3"><span class="step-n">۱</span><p>در Safari روی دکمه‌ی <b>اشتراک‌گذاری</b> <i class="fas fa-arrow-up-from-bracket mx-1"></i> پایین صفحه بزنید.</p></li>
+                <li class="flex items-start gap-3"><span class="step-n">۲</span><p>پایین بیایید و <b>Add to Home Screen</b> <i class="fas fa-square-plus mx-1"></i> را انتخاب کنید.</p></li>
+                <li class="flex items-start gap-3"><span class="step-n">۳</span><p>روی <b>Add</b> بزنید؛ برنامه با آیکون خودش روی صفحه‌ی اصلی اضافه می‌شود.</p></li>
+            </ol>
+            <p class="text-xs text-[var(--text-secondary)] mt-4">اگر گزینه را نمی‌بینید، سایت را در Safari باز کنید.</p>
+        </div>
+    </div>
+
     <div id="playerModal" class="hidden fixed inset-0 z-50" style="background-color: rgba(var(--bg-primary-rgb, 10, 10, 10), 0.9); backdrop-filter: blur(8px);">
         <div class="absolute inset-0 flex items-center justify-center p-4">
             <div class="glass-effect rounded-2xl w-full max-w-4xl overflow-hidden modal-animation flex flex-col">
@@ -358,6 +554,8 @@
                 </div>
                 <div id="playerContainer" class="aspect-w-16 aspect-h-9 bg-black relative flex-grow"></div>
                 <div class="p-3 flex flex-col gap-2 flex-shrink-0" style="background-color: rgba(var(--bg-primary-rgb, 10, 10, 10), 0.5);">
+                    <div id="playerStatus"></div>
+                    <div id="serverBar" class="flex flex-wrap gap-2"></div>
                     <!-- Main Controls -->
                     <div class="flex flex-wrap items-center gap-2">
                         <button id="toggleIPTV" class="flex-1 px-4 py-2 rounded-lg neon-button border border-[var(--accent-primary)] text-[var(--accent-primary)] transition-all duration-300 hidden text-sm"><i class="fas fa-tv mr-2"></i>IPTV</button>
@@ -407,17 +605,32 @@
     </div>
 
     <script>
-        // --- PWA Service Worker Registration ---
+        // --- PWA Service Worker Registration (relative path: works in sub-folders such as GitHub Pages) ---
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(reg => console.log('SW registered'), err => console.error('SW registration failed: ', err));
+                navigator.serviceWorker.register('./sw.js').catch(err => console.error('SW registration failed: ', err));
             });
         }
-        
-        // --- PWA INSTALL PROMPT ---
+
+        // --- PWA INSTALL: Android/desktop prompt + iOS guide ---
         const menuInstallBtn = document.getElementById('menu-install-btn');
         const installContainer = document.getElementById('install-container');
+        const iosSheet = document.getElementById('iosSheet');
+        const iosBanner = document.getElementById('iosBanner');
+        const IS_IOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        const isStandalone = () => window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
         let deferredPrompt;
+
+        function openIosSheet() {
+            iosSheet.classList.add('open'); iosSheet.setAttribute('aria-hidden', 'false');
+            dismissIosBanner(true);
+            document.getElementById('closeMenuBtn')?.click();
+        }
+        function closeIosSheet() { iosSheet.classList.remove('open'); iosSheet.setAttribute('aria-hidden', 'true'); }
+        function dismissIosBanner(silent) {
+            iosBanner.classList.remove('show');
+            try { localStorage.setItem('iosBannerDismissed', '1'); } catch (e) {}
+        }
 
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
@@ -430,11 +643,14 @@
 
         if (menuInstallBtn) {
             menuInstallBtn.addEventListener('click', async () => {
-                if (!deferredPrompt) return;
-                deferredPrompt.prompt();
-                await deferredPrompt.userChoice;
-                deferredPrompt = null;
-                if (installContainer) installContainer.style.display = 'none';
+                if (deferredPrompt) {
+                    deferredPrompt.prompt();
+                    await deferredPrompt.userChoice;
+                    deferredPrompt = null;
+                    if (installContainer) installContainer.style.display = 'none';
+                } else if (IS_IOS) {
+                    openIosSheet();
+                }
             });
         }
 
@@ -445,9 +661,14 @@
         });
 
         function setupInstallButton() {
-            if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) return;
-            if (installContainer && menuInstallBtn) {
-                installContainer.style.display = 'block';
+            if (isStandalone() || !installContainer || !menuInstallBtn) return;
+            installContainer.style.display = 'block';
+            if (IS_IOS) {
+                menuInstallBtn.disabled = false;
+                menuInstallBtn.querySelector('span').textContent = 'نصب روی iPhone / iPad';
+                let dismissed = false; try { dismissed = !!localStorage.getItem('iosBannerDismissed'); } catch (e) {}
+                if (!dismissed) setTimeout(() => iosBanner.classList.add('show'), 3500);
+            } else {
                 menuInstallBtn.disabled = true;
             }
         }
@@ -463,6 +684,7 @@
             body.classList.toggle('light-theme', theme === 'light');
             themeToggleBtn.innerHTML = theme === 'light' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
             const isLight = theme === 'light';
+            document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isLight ? '#f8f9fa' : '#0a0a0a');
             document.documentElement.style.setProperty('--bg-primary-rgb', isLight ? '248, 249, 250' : '10, 10, 10');
             document.documentElement.style.setProperty('--bg-secondary-rgb', isLight ? '255, 255, 255' : '26, 26, 26');
 
@@ -505,14 +727,10 @@
         }
 
         // --- APPLICATION LOGIC ---
-        const COUNTRIES_METADATA_URL = 'https://raw.githubusercontent.com/TVGarden/tv-garden-channel-list/main/channels/raw/countries_metadata.json';
-        const COUNTRY_BASE_URL = 'https://raw.githubusercontent.com/TVGarden/tv-garden-channel-list/main/channels/raw/countries/';
-        const CATEGORIES_BASE_URL = 'https://raw.githubusercontent.com/TVGarden/tv-garden-channel-list/main/channels/raw/categories/';
         const FLAG_API_BASE = 'https://flagcdn.com/w80/';
         const FLAG_COUNTRY_MAPPINGS = { 'UK': 'gb', 'GB': 'gb' };
         
-        const CATEGORIES = [{id:'animation',name_fa:'انیمیشن',name_en:'Animation',icon:'fa-film'},{id:'auto',name_fa:'خودرو',name_en:'Auto',icon:'fa-car'},{id:'business',name_fa:'کسب و کار',name_en:'Business',icon:'fa-briefcase'},{id:'classic',name_fa:'کلاسیک',name_en:'Classic',icon:'fa-landmark'},{id:'comedy',name_fa:'کمدی',name_en:'Comedy',icon:'fa-masks-theater'},{id:'cooking',name_fa:'آشپزی',name_en:'Cooking',icon:'fa-utensils'},{id:'culture',name_fa:'فرهنگ',name_en:'Culture',icon:'fa-palette'},{id:'documentary',name_fa:'مستند',name_en:'Documentary',icon:'fa-camera-retro'},{id:'education',name_fa:'آموزشی',name_en:'Education',icon:'fa-graduation-cap'},{id:'entertainment',name_fa:'سرگرمی',name_en:'Entertainment',icon:'fa-gamepad'},{id:'family',name_fa:'خانوادگی',name_en:'Family',icon:'fa-users'},{id:'general',name_fa:'عمومی',name_en:'General',icon:'fa-tv'},{id:'history',name_fa:'تاریخ',name_en:'History',icon:'fa-scroll'},{id:'hobby',name_fa:'سرگرمی',name_en:'Hobby',icon:'fa-puzzle-piece'},{id:'kids',name_fa:'کودکان',name_en:'Kids',icon:'fa-child-reaching'},{id:'legislative',name_fa:'قانون گذاری',name_en:'Legislative',icon:'fa-gavel'},{id:'lifestyle',name_fa:'سبک زندگی',name_en:'Lifestyle',icon:'fa-person-walking'},{id:'local',name_fa:'محلی',name_en:'Local',icon:'fa-map-marker-alt'},{id:'movies',name_fa:'فیلم',name_en:'Movies',icon:'fa-clapperboard'},{id:'music',name_fa:'موسیقی',name_en:'Music',icon:'fa-music'},{id:'news',name_fa:'اخبار',name_en:'News',icon:'fa-newspaper'},{id:'politics',name_fa:'سیاسی',name_en:'Politics',icon:'fa-landmark-dome'},{id:'religious',name_fa:'مذهبی',name_en:'Religious',icon:'fa-place-of-worship'},{id:'series',name_fa:'سریال',name_en:'Series',icon:'fa-photo-film'},{id:'science',name_fa:'علمی',name_en:'Science',icon:'fa-flask'},{id:'shop',name_fa:'فروشگاهی',name_en:'Shop',icon:'fa-shopping-cart'},{id:'sports',name_fa:'ورزشی',name_en:'Sports',icon:'fa-futbol'},{id:'travel',name_fa:'سفر',name_en:'Travel',icon:'fa-plane-departure'},{id:'weather',name_fa:'آب و هوا',name_en:'Weather',icon:'fa-cloud-sun'}];
-        const COUNTRY_NAME_MAP_FA = {"Afghanistan":"افغانستان","Albania":"آلبانی","Algeria":"الجزایر","Andorra":"آندورا","Argentina":"آرژانتین","Armenia":"ارمنستان","Australia":"استرالیا","Austria":"اتریش","Azerbaijan":"آذربایجان","Bangladesh":"بنگلادش","Belarus":"بلاروس","Belgium":"بلژیک","Bolivia":"بولیوی","Bosnia and Herzegovina":"بوسنی و هرزگوین","Brazil":"برزیل","Bulgaria":"بلغارستان","Canada":"کانادا","Chile":"شیلی","China":"چین","Colombia":"کلمبیا","Croatia":"کرواسی","Cuba":"کوبا","Cyprus":"قبرس","Czechia":"چک","Denmark":"دانمارک","Ecuador":"اکوادور","Egypt":"مصر","Estonia":"استونی","Finland":"فنلاند","France":"فرانسه","Georgia":"گرجستان","Germany":"آلمان","Greece":"یونان","Hungary":"مجارستان","Iceland":"ایسلند","India":"هند","Indonesia":"اندونزی","Iran":"ایران","Iraq":"عراق","Ireland":"ایرلند","Israel":"اسرائیل","Italy":"ایتالیا","Japan":"ژاپن","Kazakhstan":"قزاقستان","Kuwait":"کویت","Latvia":"لتونی","Lebanon":"لبنان","Libya":"لیبی","Lithuania":"لیتوانی","Luxembourg":"لوکزامبورگ","Malaysia":"مالزی","Malta":"مالت","Mexico":"مکزیک","Moldova":"مولداوی","Monaco":"موناکو","Montenegro":"مونته‌نگرو","Morocco":"مراکش","Netherlands":"هلند","New Zealand":"نیوزیلند","North Korea":"کره شمالی","North Macedonia":"مقدونیه شمالی","Norway":"نروژ","Pakistan":"پاکستان","Palestine":"فلسطین","Paraguay":"پاراگوئه","Peru":"پرو","Philippines":"فیلیپین","Poland":"لهستان","Portugal":"پرتغال","Qatar":"قطر","Romania":"رومانی","Russia":"روسیه","San Marino":"سان مارینو","Saudi Arabia":"عربستان سعودی","Serbia":"صربستان","Singapore":"سنگاپور","Slovakia":"اسلواکی","Slovenia":"اسلوونی","South Africa":"آفریقای جنوبی","South Korea":"کره جنوبی","Spain":"اسپانیا","Sweden":"سوئد","Switzerland":"سوئیس","Syria":"سوریه","Taiwan":"تایوان","Thailand":"تایلند","Tunisia":"تونس","Turkey":"ترکیه","Turkmenistan":"ترکمنستان","Ukraine":"اوکراین","United Arab Emirates":"امارات متحده عربی","United Kingdom":"بریتانیا","United States":"ایالات متحده","Uruguay":"اروگوئه","Uzbekistan":"ازبکستان","Venezuela":"ونزوئلا","Vietnam":"ویتنام","Yemen":"یمن"};
+        const CATEGORIES = [{id:'animation',name_fa:'انیمیشن',name_en:'Animation',icon:'fa-film'},{id:'auto',name_fa:'خودرو',name_en:'Auto',icon:'fa-car'},{id:'business',name_fa:'کسب و کار',name_en:'Business',icon:'fa-briefcase'},{id:'classic',name_fa:'کلاسیک',name_en:'Classic',icon:'fa-landmark'},{id:'comedy',name_fa:'کمدی',name_en:'Comedy',icon:'fa-masks-theater'},{id:'cooking',name_fa:'آشپزی',name_en:'Cooking',icon:'fa-utensils'},{id:'culture',name_fa:'فرهنگ',name_en:'Culture',icon:'fa-palette'},{id:'documentary',name_fa:'مستند',name_en:'Documentary',icon:'fa-camera-retro'},{id:'education',name_fa:'آموزشی',name_en:'Education',icon:'fa-graduation-cap'},{id:'entertainment',name_fa:'سرگرمی',name_en:'Entertainment',icon:'fa-gamepad'},{id:'family',name_fa:'خانوادگی',name_en:'Family',icon:'fa-users'},{id:'general',name_fa:'عمومی',name_en:'General',icon:'fa-tv'},{id:'history',name_fa:'تاریخ',name_en:'History',icon:'fa-scroll'},{id:'hobby',name_fa:'سرگرمی',name_en:'Hobby',icon:'fa-puzzle-piece'},{id:'kids',name_fa:'کودکان',name_en:'Kids',icon:'fa-child-reaching'},{id:'legislative',name_fa:'قانون گذاری',name_en:'Legislative',icon:'fa-gavel'},{id:'lifestyle',name_fa:'سبک زندگی',name_en:'Lifestyle',icon:'fa-person-walking'},{id:'local',name_fa:'محلی',name_en:'Local',icon:'fa-map-marker-alt'},{id:'movies',name_fa:'فیلم',name_en:'Movies',icon:'fa-clapperboard'},{id:'music',name_fa:'موسیقی',name_en:'Music',icon:'fa-music'},{id:'news',name_fa:'اخبار',name_en:'News',icon:'fa-newspaper'},{id:'politics',name_fa:'سیاسی',name_en:'Politics',icon:'fa-landmark-dome'},{id:'religious',name_fa:'مذهبی',name_en:'Religious',icon:'fa-place-of-worship'},{id:'series',name_fa:'سریال',name_en:'Series',icon:'fa-photo-film'},{id:'science',name_fa:'علمی',name_en:'Science',icon:'fa-flask'},{id:'outdoor',name_fa:'طبیعت‌گردی',name_en:'Outdoor',icon:'fa-tree'},{id:'relax',name_fa:'آرامش',name_en:'Relax',icon:'fa-spa'},{id:'shop',name_fa:'فروشگاهی',name_en:'Shop',icon:'fa-shopping-cart'},{id:'sports',name_fa:'ورزشی',name_en:'Sports',icon:'fa-futbol'},{id:'travel',name_fa:'سفر',name_en:'Travel',icon:'fa-plane-departure'},{id:'weather',name_fa:'آب و هوا',name_en:'Weather',icon:'fa-cloud-sun'}];
         
         // --- DOM Elements ---
         const channelGrid = document.getElementById('channelGrid');
@@ -591,25 +809,15 @@
             document.getElementById('countriesAccordionBtn').addEventListener('click', () => toggleAccordion('countries'));
             document.getElementById('categoriesAccordionBtn').addEventListener('click', () => toggleAccordion('categories'));
             
-            document.getElementById('channelSearch').addEventListener('input', () => setTimeout(filterAndDisplay, 300));
+            let searchTimer; document.getElementById('channelSearch').addEventListener('input', () => { clearTimeout(searchTimer); searchTimer = setTimeout(filterAndDisplay, 250); });
 
             try {
-                const response = await fetch(COUNTRIES_METADATA_URL);
-                countriesData = await response.json();
-                Object.keys(countriesData).forEach(code => {
-                    countriesData[code].country_fa = COUNTRY_NAME_MAP_FA[countriesData[code].country] || countriesData[code].country;
-                });
-                populateCountriesList(countriesData);
                 populateCategoriesList();
-                
+                document.getElementById('countriesAccordionContent').innerHTML = '<div class="p-3 text-xs text-[var(--text-secondary)]">در حال بارگذاری…</div>';
+                document.getElementById('iranBtn').addEventListener('click', () => { selectIran(); closeMenu(); });
                 await checkForSharedChannel();
-
-                if (!lastSelected.type) {
-                    selectCountry('IR', countriesData['IR']);
-                }
-                
-                await fetchAllChannels(countriesData);
-                selectCountry('IR', countriesData['IR']); // Default to Iran
+                await selectIran();
+                loadGlobal().catch(() => {});
             } catch (error) {
                 console.error('Initialization failed:', error);
                 showError('خطا در راه اندازی برنامه.');
@@ -768,7 +976,7 @@
 
 
         // --- UI & DISPLAY ---
-        function getChannelId(channel) { return `${channel.country || 'cat'}_${channel.name.replace(/[^a-zA-Z0-9]/g, '')}`; }
+
         
         function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
@@ -803,33 +1011,7 @@
             document.getElementById('search-filter-section').style.display = (viewName === 'recordings' ? 'none' : 'block');
         }
         
-        function displayChannels(channels) {
-            switchView('channels');
-            if (channels.length === 0) {
-                channelGrid.innerHTML = '';
-                document.getElementById('noResultsMessage').textContent = 'لطفاً با عبارت دیگری جستجو کنید یا فیلترها را تغییر دهید.';
-                document.getElementById('noResults').classList.remove('hidden');
-                return;
-            }
-            document.getElementById('noResults').classList.add('hidden');
 
-            channelGrid.innerHTML = channels.map(channel => {
-                const channelId = getChannelId(channel);
-                const isFavorite = favorites.some(fav => getChannelId(fav) === channelId);
-                return `
-                <div class="channel-card glass-effect rounded-xl overflow-hidden p-4 flex flex-col justify-center items-center text-center h-28 cursor-pointer" onclick='playChannel(${JSON.stringify(channel).replace(/'/g, "\\'")})'>
-                    <i class="favorite-star ${isFavorite ? 'fa-solid favorited' : 'fa-regular'} fa-star" data-channel-id="${channelId}" onclick="toggleFavorite(event, this)"></i>
-                    <div class="flex-grow flex flex-col justify-center items-center">
-                        <h3 class="font-semibold text-xs mb-2 text-[var(--text-primary)]">${channel.name}</h3>
-                        ${channel.country ? `<img src="${FLAG_API_BASE}${FLAG_COUNTRY_MAPPINGS[channel.country.toUpperCase()] || channel.country.toLowerCase()}.png" alt="${channel.country}" class="w-6 h-4 object-cover rounded shadow-md border border-white/20 mb-2" onerror="this.style.display='none'">` : ''}
-                    </div>
-                    <div class="flex gap-2 text-xs justify-center">
-                        ${channel.iptv_urls.length ? `<span class="px-2 py-1 rounded-full text-xs" style="background-color: var(--highlight-bg); color: var(--accent-primary);"><i class="fas fa-tv ml-1"></i>IPTV</span>` : ''}
-                        ${channel.youtube_urls.length ? `<span class="px-2 py-1 rounded-full text-xs" style="background-color: rgba(var(--accent-secondary-rgb), 0.2); color: var(--accent-secondary);"><i class="fab fa-youtube ml-1"></i>YouTube</span>` : ''}
-                    </div>
-                </div>`;
-            }).join('');
-        }
 
         function displayRecordings(recordings) {
             switchView('recordings');
@@ -886,28 +1068,9 @@
         }
         
         // --- PLAYER LOGIC ---
-        function playChannel(channel) {
-            currentChannelForModal = channel;
-            playerModal.classList.remove('hidden');
-            channelTitle.textContent = channel.name;
-            const hasIptv = channel.iptv_urls?.length > 0;
-            const hasYoutube = channel.youtube_urls?.length > 0;
-            
-            toggleIPTVBtn.classList.toggle('hidden', !hasIptv);
-            toggleYouTubeBtn.classList.toggle('hidden', !hasYoutube);
-            shareBtn.classList.remove('hidden');
-            fullscreenBtn.classList.remove('hidden');
-            
-            [recordBtn, recordControlsContainer, speedControlContainer, qualityControlContainer, audioOnlyBtn].forEach(el => el.classList.add('hidden'));
 
-            if (hasIptv) toggleIPTVBtn.onclick = () => setupIPTVPlayer(channel.iptv_urls[0]);
-            if (hasYoutube) toggleYouTubeBtn.onclick = () => setupYouTubePlayer(channel.youtube_urls[0]);
-            
-            if (playerContainer.innerHTML !== '') playerContainer.innerHTML = '';
-            hasIptv ? setupIPTVPlayer(channel.iptv_urls[0]) : hasYoutube ? setupYouTubePlayer(channel.youtube_urls[0]) : null;
-        }
         
-        function playRecording(url, title) {
+        function playRecording(url, title) { resetPlayerUI();
             playerModal.classList.remove('hidden');
             channelTitle.textContent = "پخش ضبط: " + title;
             
@@ -923,59 +1086,11 @@
             };
         }
 
-        function setupIPTVPlayer(url) {
-            if (currentHls) currentHls.destroy();
-            playerContainer.innerHTML = `<video controls autoplay class="w-full h-full relative z-10"></video>`;
-            const video = playerContainer.querySelector('video');
-            currentPlayer = video;
-            
-            [pipBtn, recordBtn, recordControlsContainer, speedControlContainer, audioOnlyBtn].forEach(el => el.classList.remove('hidden'));
-            
-            playbackSpeedSelect.value = 1;
-            video.playbackRate = 1;
-            qualityControlContainer.classList.add('hidden');
-            qualitySelect.innerHTML = '';
-            recordingQualitySelect.value = 'source';
-            
-            // MODIFIED: Reset audio only button state
-            playerContainer.classList.remove('audio-mode');
-            audioOnlyBtn.classList.remove('active');
-            audioOnlyBtn.innerHTML = '<i class="fas fa-music"></i>';
-            audioOnlyBtn.title = 'فقط صدا';
 
 
-            if (Hls.isSupported()) {
-                currentHls = new Hls();
-                currentHls.loadSource(url);
-                currentHls.attachMedia(video);
 
-                currentHls.on(Hls.Events.MANIFEST_PARSED, function (event, data) {
-                    if (data.levels.length > 1) {
-                        qualitySelect.innerHTML = '<option value="-1">خودکار</option>' + 
-                            data.levels.map((level, index) => `<option value="${index}">${level.height}p</option>`).join('');
-                        qualitySelect.value = currentHls.currentLevel;
-                        qualityControlContainer.classList.remove('hidden');
-                    }
-                });
 
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                video.src = url;
-            }
-            toggleIPTVBtn.style.opacity = '1'; toggleYouTubeBtn.style.opacity = '0.5';
-        }
-
-        function setupYouTubePlayer(url) {
-            if (currentHls) currentHls.destroy();
-            currentPlayer = null;
-            
-            [pipBtn, recordBtn, recordControlsContainer, speedControlContainer, qualityControlContainer, audioOnlyBtn].forEach(el => el.classList.add('hidden'));
-
-            const videoId = new URL(url).searchParams.get('v');
-            playerContainer.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${videoId}?autoplay=1" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
-            toggleYouTubeBtn.style.opacity = '1'; toggleIPTVBtn.style.opacity = '0.5';
-        }
-
-        function closePlayer() {
+        function closePlayer() { resetPlayerUI();
             if (isRecording) stopRecording();
             playerModal.classList.add('hidden');
             if (currentHls) currentHls.destroy();
@@ -1034,27 +1149,244 @@
             navigator.clipboard.writeText(shareUrl).then(() => showToast('لینک کانال کپی شد!', 'success'), () => showToast('خطا در کپی کردن لینک', 'error'));
         }
         
+
+
+
+        
+
+        // --- DATA: Iranian channels (FaTv) + global (iptv-org API) ---
+        const FA_URL = 'https://raw.githubusercontent.com/DarkNamaTv/FaTv/main/data/channels.json';
+        const IPTV_API = 'https://iptv-org.github.io/api/';
+        const PAGE = 60, IS_HTTPS = location.protocol === 'https:';
+        const byId = new Map();
+        let iranChannels = [], globalChannels = [], countryList = [], globalPromise = null, iranPromise = null;
+        let viewList = [], shown = 0, srvIdx = 0, tried = new Set(), failed = new Set(), failTimer = null, moreObs = null;
+
+        const esc = s => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+        const fa = n => Number(n).toLocaleString('fa-IR');
+        const catLabel = c => (CATEGORIES.find(x => x.id === c) || {}).name_fa || c;
+        const IRAN_FLAG = 'https://flagofiran.com/files/royal/Naval_flag_of_Iran.svg';
+        const flagKey = code => { const k = String(code || '').toUpperCase(); return FLAG_COUNTRY_MAPPINGS[k] || k.toLowerCase(); };
+        const flagSrc = code => String(code).toUpperCase() === 'IR' ? IRAN_FLAG : `${FLAG_API_BASE}${flagKey(code)}.png`;
+        const flagBg = code => /^[A-Za-z]{2}$/.test(code || '') ? (code.toUpperCase() === 'IR' ? IRAN_FLAG : `https://flagcdn.com/${flagKey(code)}.svg`) : '';
+        const flagImg = (code, cls = 'w-5 h-4 inline-block mx-1 rounded-sm') => `<img src="${flagSrc(code)}" class="${cls} object-contain" loading="lazy" decoding="async" alt="">`;
+        function getChannelId(c) { return c.id; }
+        function openById(id) { const c = byId.get(id); if (c) playChannel(c); }
+
+        // dedupe servers; on https pages put http servers last (browsers block them as mixed content)
+        function mkServers(arr) {
+            const seen = new Set();
+            return arr.filter(s => s.url && !seen.has(s.url) && seen.add(s.url))
+                .map((s, i) => ({ ...s, i }))
+                .sort((a, b) => (IS_HTTPS ? (a.url.startsWith('http:') - b.url.startsWith('http:')) : 0) || a.i - b.i);
+        }
+
+        function loadIran() {
+            return iranPromise ||= (async () => {
+                const res = await fetch(FA_URL);
+                if (!res.ok) throw new Error('fatv');
+                const d = await res.json();
+                iranChannels = d.channels.map(c => ({
+                    id: 'fa_' + c.channel_id, name: c.channel_name, name_en: c.channel_name_en || '', logo: c.channel_image || '',
+                    cats: c.category_name ? [c.category_name] : [], country: 'IR', vpn: !!c.need_vpn, pop: c.popular || 0,
+                    servers: mkServers([{ url: c.channel_url, title: 'سرور اصلی' }, ...(c.sources || []).map(s => ({ url: s.channel_url, title: s.title }))])
+                })).filter(c => c.servers.length).sort((a, b) => b.pop - a.pop);
+                iranChannels.forEach(c => byId.set(c.id, c));
+                return iranChannels;
+            })().catch(e => { iranPromise = null; throw e; });
+        }
+
+        function loadGlobal() {
+            return globalPromise ||= (async () => {
+                const j = u => fetch(IPTV_API + u).then(r => { if (!r.ok) throw new Error(u); return r.json(); });
+                const [chs, sts, cts, logos] = await Promise.all([j('channels.json'), j('streams.json'), j('countries.json'), j('logos.json').catch(() => [])]);
+                const lg = {}; logos.forEach(l => { lg[l.channel] ??= l.url; });
+                const by = {}; sts.forEach(s => { if (s.channel && s.url) (by[s.channel] ??= []).push({ url: s.url, title: '', q: s.quality || '' }); });
+                globalChannels = chs.filter(c => by[c.id] && !c.is_nsfw && !c.closed && c.country !== 'IR').map(c => ({
+                    id: 'ch_' + c.id, name: c.name, name_en: (c.alt_names || []).join(' '), logo: c.logo || lg[c.id] || '',
+                    cats: c.categories || [], country: c.country, servers: mkServers(by[c.id])
+                })).sort((a, b) => a.name.localeCompare(b.name));
+                globalChannels.forEach(c => byId.set(c.id, c));
+                const used = new Set(globalChannels.map(c => c.country));
+                let dn = null; try { dn = new Intl.DisplayNames(['fa'], { type: 'region' }); } catch (e) {}
+                countryList = cts.filter(c => used.has(c.code) || c.code === 'IR').map(c => {
+                    let f = c.name; try { f = dn.of(c.code === 'UK' ? 'GB' : c.code) || c.name; } catch (e) {}
+                    return { code: c.code, name: c.name, fa: f };
+                }).sort((a, b) => a.fa.localeCompare(b.fa, 'fa'));
+                populateCountriesList(countryList);
+                return globalChannels;
+            })().catch(e => { globalPromise = null; throw e; });
+        }
+
         async function checkForSharedChannel() {
-            const channelId = new URLSearchParams(window.location.search).get('channel');
-            if (!channelId) return;
-            await fetchAllChannels(countriesData, true); 
-            const sharedChannel = allChannels.find(ch => getChannelId(ch) === channelId);
-            if (sharedChannel) {
-                playChannel(sharedChannel);
-                window.history.replaceState({}, document.title, window.location.pathname);
+            const id = new URLSearchParams(location.search).get('channel');
+            if (!id) return;
+            try { await loadIran(); if (!id.startsWith('fa_')) await loadGlobal(); } catch (e) {}
+            const ch = byId.get(id);
+            if (ch) { playChannel(ch); history.replaceState({}, document.title, location.pathname); }
+        }
+
+        function loadFavorites() {
+            favorites = JSON.parse(localStorage.getItem('tvFavorites') || '[]').map(f => f.servers ? f : {   // migrate old format
+                id: `${f.country || 'cat'}_${(f.name || '').replace(/[^a-zA-Z0-9]/g, '')}`, name: f.name, logo: '', cats: [], country: f.country,
+                servers: mkServers((f.iptv_urls || []).map(u => ({ url: u, title: '' })))
+            }).filter(f => f.servers.length);
+            favorites.forEach(f => byId.set(f.id, f));
+        }
+
+        // --- VIEWS ---
+        function renderChips(list) {
+            const cnt = {}; list.forEach(c => (c.cats || []).forEach(k => cnt[k] = (cnt[k] || 0) + 1));
+            const top = Object.entries(cnt).sort((a, b) => b[1] - a[1]).slice(0, 14);
+            const box = document.getElementById('sourceFilters');
+            box.innerHTML = top.length < 2 ? '' : [['all', 'همه']].concat(top.map(([k]) => [k, catLabel(k)])).map(([k, l], i) =>
+                `<button onclick="toggleSourceFilter(this.dataset.filter)" class="filter-btn ${i ? '' : 'active'} border border-[var(--border-color)] rounded-lg px-3 py-1.5 transition-all duration-300 text-xs" data-filter="${esc(k)}">${esc(l)}</button>`).join('');
+        }
+        function setView(type, id, title, sub, list) {
+            lastSelected = { type, id };
+            document.getElementById('main-title').innerHTML = title;
+            document.getElementById('main-subtitle').innerHTML = sub;
+            currentChannels = list; renderChips(list); filterAndDisplay();
+        }
+        async function selectIran() {
+            lastSelected = { type: 'country', id: 'IR' }; showLoading();
+            try { await loadIran(); setView('country', 'IR', flagImg('IR', 'w-6 h-4 inline-block ml-2 rounded-sm') + 'شبکه‌های ایرانی', 'هر شبکه چند سرور دارد؛ اگر یکی وصل نشد، خودکار سرور بعدی امتحان می‌شود', iranChannels); }
+            catch (e) { showError('خطا در دریافت شبکه‌های ایرانی.'); }
+        }
+        async function selectCountry(code) {
+            if (code === 'IR') return selectIran();
+            lastSelected = { type: 'country', id: code }; showLoading();
+            try { await loadGlobal(); const c = countryList.find(x => x.code === code) || { fa: code, name: code };
+                setView('country', code, `کانال‌های کشور ${esc(c.fa)}`, `کانال‌های تلویزیونی زنده از ${flagImg(code)} ${esc(c.name)}`, globalChannels.filter(x => x.country === code)); }
+            catch (e) { showError('خطا در دریافت اطلاعات iptv-org.'); }
+        }
+        async function selectCategory(id, name, icon) {
+            lastSelected = { type: 'category', id }; showLoading();
+            try { await loadGlobal(); setView('category', id, `<i class="fas ${icon} mr-2"></i>موضوع: ${name}`, `کانال‌های مرتبط با ${name}`, globalChannels.filter(c => c.cats.includes(id))); }
+            catch (e) { showError('خطا در دریافت اطلاعات iptv-org.'); }
+        }
+        async function selectAllWindows() {
+            lastSelected = { type: 'all' }; showLoading();
+            try { await Promise.all([loadIran(), loadGlobal()]); allChannels = [...iranChannels, ...globalChannels];
+                setView('all', null, '<i class="fas fa-globe-europe mr-2"></i>همه‌ی کانال‌ها', 'نمایش تمام کانال‌های موجود', allChannels); }
+            catch (e) { showError('خطا در دریافت کانال‌ها.'); }
+        }
+
+        function filterAndDisplay() {
+            if (lastSelected.type === 'recordings') return;
+            const src = lastSelected.type === 'favorites' ? favorites : lastSelected.type === 'all' ? allChannels : currentChannels;
+            const q = document.getElementById('channelSearch').value.trim().toLowerCase();
+            const f = document.querySelector('#sourceFilters .filter-btn.active')?.dataset.filter || 'all';
+            const out = src.filter(c => (f === 'all' || (c.cats || []).includes(f)) && (!q || (c.name + ' ' + (c.name_en || '')).toLowerCase().includes(q)));
+            displayChannels(out);
+            document.getElementById('channelCount').textContent = out.length;
+            document.getElementById('resultsCount').classList.toggle('hidden', out.length === 0);
+        }
+
+        function cardHTML(ch, i) {
+            const fav = favorites.some(f => f.id === ch.id);
+            const fb = flagBg(ch.country);
+            return `<div class="channel-card glass-effect rounded-2xl p-3 flex flex-col items-center text-center h-36 cursor-pointer" style="--i:${Math.min(i || 0, 14)};${fb ? `--flag:url(${fb})` : ''}"${fb ? ' data-flag' : ''} onclick="openById('${ch.id}')">
+                <i class="favorite-star ${fav ? 'fa-solid favorited' : 'fa-regular'} fa-star" data-channel-id="${ch.id}" onclick="toggleFavorite(event, this)"></i>
+                ${ch.vpn ? '<span class="badge-vpn">VPN</span>' : ''}
+                <div class="flex-grow flex items-center justify-center w-full min-h-0">${ch.logo ? `<img src="${esc(ch.logo)}" loading="lazy" decoding="async" referrerpolicy="no-referrer" class="max-h-12 max-w-[80%] object-contain" onerror="this.remove()">` : '<i class="fas fa-tv text-2xl opacity-40"></i>'}</div>
+                <h3 class="font-semibold text-xs mt-1 w-full truncate">${esc(ch.name)}</h3>
+                <span class="text-[10px] mt-1 px-2 py-0.5 rounded-full" style="background: var(--highlight-bg); color: var(--accent-primary);"><i class="fas fa-server ml-1"></i>${fa(ch.servers.length)} سرور</span>
+            </div>`;
+        }
+        function displayChannels(channels) {
+            switchView('channels'); viewList = channels; shown = 0; channelGrid.innerHTML = '';
+            if (moreObs) moreObs.disconnect();
+            if (!channels.length) {
+                document.getElementById('noResultsMessage').textContent = 'لطفاً با عبارت دیگری جستجو کنید یا فیلترها را تغییر دهید.';
+                document.getElementById('noResults').classList.remove('hidden'); return;
+            }
+            document.getElementById('noResults').classList.add('hidden');
+            renderMore();
+        }
+        function renderMore() {
+            document.getElementById('moreBtn')?.remove();
+            channelGrid.insertAdjacentHTML('beforeend', viewList.slice(shown, shown + PAGE).map(cardHTML).join(''));
+            shown += PAGE;
+            if (shown < viewList.length) {
+                channelGrid.insertAdjacentHTML('beforeend', `<button id="moreBtn" onclick="renderMore()" class="col-span-full glass-effect rounded-xl py-3 text-sm">نمایش بیشتر (${fa(viewList.length - shown)})</button>`);
+                moreObs = new IntersectionObserver(es => { if (es[0].isIntersecting) renderMore(); }, { rootMargin: '300px' });
+                moreObs.observe(document.getElementById('moreBtn'));
             }
         }
 
-        async function fetchAllChannels(countries, forceWait = false) {
-            if (allChannels.length > 0 && !forceWait) return;
-            document.getElementById('allChannelsBtn').disabled = true;
-            const promises = Object.keys(countries)
-                .filter(code => countries[code].hasChannels)
-                .map(code => fetch(`${COUNTRY_BASE_URL}${code.toLowerCase()}.json`).then(res => res.ok ? res.json() : []).catch(() => []));
-            allChannels = (await Promise.all(promises)).flat();
-            document.getElementById('allChannelsBtn').disabled = false;
+        function populateCountriesList(list) {
+            const closeMenu = () => document.getElementById('closeMenuBtn').click();
+            window._closeMenu = closeMenu;
+            document.getElementById('countriesAccordionContent').innerHTML = list.map(c =>
+                `<a href="#" class="menu-item flex justify-between items-center gap-3 px-2 py-2 hover:bg-[var(--highlight-bg)] rounded-md" onclick="event.preventDefault(); selectCountry('${c.code}'); _closeMenu()">
+                    <div class="flex items-center gap-2">${flagImg(c.code, 'w-5 h-5 object-contain rounded-sm')}<span class="font-normal text-xs">${esc(c.fa)}</span></div>
+                    <span class="text-xs font-normal text-gray-400 uppercase" dir="ltr">${esc(c.name)}</span>
+                </a>`).join('');
         }
-        
+
+        // --- PLAYER with automatic server failover ---
+        function setStatus(html) { document.getElementById('playerStatus').innerHTML = html; }
+        function stopWatch() { clearTimeout(failTimer); }
+        function resetPlayerUI() { stopWatch(); setStatus(''); document.getElementById('serverBar').innerHTML = ''; }
+        function renderServerBar() {
+            const ch = currentChannelForModal;
+            document.getElementById('serverBar').innerHTML = ch && ch.servers.length > 1 ? ch.servers.map((s, i) =>
+                `<button onclick="playServer(${i})" class="srv ${i === srvIdx ? 'active' : ''} ${failed.has(i) ? 'failed' : ''}">${esc(s.title || 'سرور ' + fa(i + 1))}${s.q ? ' · ' + esc(s.q) : ''}</button>`).join('') : '';
+        }
+        function playChannel(ch) {
+            currentChannelForModal = ch; failed = new Set();
+            playerModal.classList.remove('hidden'); channelTitle.textContent = ch.name;
+            [toggleIPTVBtn, toggleYouTubeBtn, recordBtn, recordControlsContainer, speedControlContainer, qualityControlContainer, audioOnlyBtn].forEach(e => e.classList.add('hidden'));
+            shareBtn.classList.remove('hidden'); fullscreenBtn.classList.remove('hidden');
+            playServer(0);
+        }
+        function playServer(i, auto) {
+            const ch = currentChannelForModal; if (!ch) return;
+            stopWatch(); if (currentHls) { currentHls.destroy(); currentHls = null; }
+            if (!auto) { tried = new Set(); failed = new Set(); }
+            srvIdx = i; tried.add(i);
+            const s = ch.servers[i], n = ch.servers.length;
+            renderServerBar();
+            setStatus(`<i class="fas fa-circle-notch fa-spin"></i> در حال اتصال به سرور ${fa(i + 1)} از ${fa(n)}…`);
+
+            playerContainer.innerHTML = '<video controls autoplay playsinline class="w-full h-full relative z-10"></video>';
+            const video = currentPlayer = playerContainer.querySelector('video');
+            [pipBtn, recordBtn, recordControlsContainer, speedControlContainer, audioOnlyBtn].forEach(el => el.classList.remove('hidden'));
+            playbackSpeedSelect.value = 1; qualityControlContainer.classList.add('hidden'); qualitySelect.innerHTML = '';
+            recordingQualitySelect.value = 'source';
+            playerContainer.classList.remove('audio-mode'); audioOnlyBtn.classList.remove('active');
+            audioOnlyBtn.innerHTML = '<i class="fas fa-music"></i>'; audioOnlyBtn.title = 'فقط صدا';
+
+            let dead = false, recovered = false;
+            const bad = () => {
+                if (dead || currentPlayer !== video) return; dead = true; stopWatch(); failed.add(i);
+                const nx = ch.servers.findIndex((_, k) => !tried.has(k));
+                if (nx > -1) { showToast(`سرور ${fa(i + 1)} وصل نشد؛ تلاش با سرور ${fa(nx + 1)}…`, 'error'); playServer(nx, true); }
+                else { renderServerBar(); setStatus(`<i class="fas fa-triangle-exclamation text-red-500"></i> هیچ‌کدام از سرورها وصل نشد. <button class="srv" onclick="playServer(0)">تلاش دوباره</button>`); }
+            };
+            video.addEventListener('playing', () => { stopWatch(); setStatus(''); tried = new Set([i]); renderServerBar(); }, { once: true });
+            video.addEventListener('error', bad);
+            failTimer = setTimeout(bad, 15000);
+
+            const native = /\.(mp3|aac|ogg|mp4|webm)(\?|$)|;$/i.test(s.url);
+            if (!native && window.Hls && Hls.isSupported()) {
+                currentHls = new Hls({ manifestLoadingMaxRetry: 1, levelLoadingMaxRetry: 2, fragLoadingMaxRetry: 2 });
+                currentHls.loadSource(s.url); currentHls.attachMedia(video);
+                currentHls.on(Hls.Events.MANIFEST_PARSED, (e, data) => {
+                    if (data.levels.length > 1) {
+                        qualitySelect.innerHTML = '<option value="-1">خودکار</option>' + data.levels.map((l, k) => `<option value="${k}">${l.height}p</option>`).join('');
+                        qualitySelect.value = currentHls.currentLevel; qualityControlContainer.classList.remove('hidden');
+                    }
+                    video.play().catch(() => {});
+                });
+                currentHls.on(Hls.Events.ERROR, (e, d) => {
+                    if (!d.fatal) return;
+                    if (d.type === Hls.ErrorTypes.MEDIA_ERROR && !recovered) { recovered = true; currentHls.recoverMediaError(); } else bad();
+                });
+            } else { video.src = s.url; video.play().catch(() => {}); }
+        }
+
         // --- UTILITY & HELPER FUNCTIONS ---
         function toggleAccordion(type) {
             const btn = document.getElementById(`${type}AccordionBtn`);
@@ -1062,38 +1394,18 @@
             content.classList.toggle('hidden');
             btn.querySelector('i.fa-chevron-down').classList.toggle('rotate-180');
         }
-        function loadFavorites() { favorites = JSON.parse(localStorage.getItem('tvFavorites') || '[]'); }
+
         function saveFavorites() { localStorage.setItem('tvFavorites', JSON.stringify(favorites)); }
         
         function selectFavorites() { lastSelected = {type:'favorites'}; document.getElementById('main-title').innerHTML = `<i class="fas fa-star mr-2" style="color: var(--favorite-color);"></i>علاقه‌مندی‌ها`; document.getElementById('main-subtitle').textContent = `کانال‌هایی که ستاره‌دار کرده‌اید`; filterAndDisplay(); }
         async function selectRecordings() { lastSelected = {type:'recordings'}; document.getElementById('main-title').innerHTML = `<i class="fas fa-hdd mr-2"></i>ویدیوهای ضبط شده`; document.getElementById('main-subtitle').textContent = `ویدیوهایی که ضبط و ذخیره کرده‌اید`; const recs = await getRecordings(); displayRecordings(recs); }
-        function selectAllWindows() { lastSelected = {type:'all'}; document.getElementById('main-title').innerHTML = `<i class="fas fa-globe-europe mr-2"></i>همه‌ی کانال‌ها`; document.getElementById('main-subtitle').textContent = `نمایش تمام کانال‌های موجود`; currentChannels = allChannels; filterAndDisplay(); }
-        function selectCountry(code, data) { lastSelected = {type:'country', id:code}; document.getElementById('main-title').textContent = `کانال‌های کشور ${data.country_fa}`; document.getElementById('main-subtitle').innerHTML = `کانال‌های تلویزیونی زنده از <img src="${FLAG_API_BASE}${FLAG_COUNTRY_MAPPINGS[code.toUpperCase()] || code.toLowerCase()}.png" class="w-5 h-4 inline-block mx-1 rounded-sm"> ${data.country}`; loadChannels(`${COUNTRY_BASE_URL}${code.toLowerCase()}.json`); }
-        function selectCategory(id, name, icon) { lastSelected = {type:'category', id:id}; document.getElementById('main-title').innerHTML = `<i class="fas ${icon} mr-2"></i>موضوع: ${name}`; document.getElementById('main-subtitle').textContent = `کانال‌های مرتبط با ${name}`; loadChannels(`${CATEGORIES_BASE_URL}${id}.json`); }
+
+
+
         
-        async function loadChannels(url) { showLoading(); try { const res = await fetch(url); currentChannels = await res.json(); filterAndDisplay(); } catch (e) { showError('خطا در بارگذاری کانال‌ها.'); } }
+
         
-        function filterAndDisplay() {
-            if (lastSelected.type === 'recordings') return;
-            let source = [];
-            if (lastSelected.type === 'favorites') source = favorites;
-            else if (lastSelected.type === 'all') source = allChannels;
-            else source = currentChannels;
-            
-            const searchTerm = document.getElementById('channelSearch').value.toLowerCase();
-            const activeSourceFilter = document.querySelector('#sourceFilters .filter-btn.active').dataset.filter;
-            
-            const filtered = source.filter(ch => 
-                ch.name.toLowerCase().includes(searchTerm) && 
-                (activeSourceFilter === 'all' || 
-                (activeSourceFilter === 'iptv' && ch.iptv_urls.length) || 
-                (activeSourceFilter === 'youtube' && ch.youtube_urls.length))
-            );
-            
-            displayChannels(filtered);
-            document.getElementById('channelCount').textContent = filtered.length;
-            document.getElementById('resultsCount').classList.toggle('hidden', filtered.length === 0);
-        }
+
         
         function toggleSourceFilter(filter) { document.querySelectorAll('#sourceFilters .filter-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter)); filterAndDisplay(); }
         
@@ -1107,18 +1419,7 @@
             ).join('');
         }
         
-        function populateCountriesList(data) {
-             const closeMenu = () => document.getElementById('closeMenuBtn').click();
-             document.getElementById('countriesAccordionContent').innerHTML = Object.entries(data).filter(([_,d])=>d.hasChannels).sort((a,b)=>a[1].country_fa.localeCompare(b[1].country_fa,'fa')).map(([c,d])=>
-                `<a href="#" class="menu-item flex justify-between items-center gap-3 px-2 py-2 hover:bg-[var(--highlight-bg)] rounded-md" onclick='event.preventDefault(); selectCountry("${c}", ${JSON.stringify(d).replace(/'/g, "\\'")}); closeMenu()'>
-                    <div class="flex items-center gap-2">
-                        <img src="${FLAG_API_BASE}${FLAG_COUNTRY_MAPPINGS[c.toUpperCase()] || c.toLowerCase()}.png" class="w-5 h-5 object-contain rounded-sm">
-                        <span class="font-normal text-xs">${d.country_fa}</span>
-                    </div>
-                    <span class="text-xs font-normal text-gray-400 uppercase" dir="ltr">${d.country}</span>
-                </a>`
-            ).join('');
-        }
+
         
         function showError(message) { channelGrid.innerHTML = `<div class="col-span-full text-center py-12"><i class="fas fa-exclamation-circle text-4xl text-red-500 mb-4"></i><p>${message}</p></div>`; }
         function toggleFullScreen() { const elem = playerModal; if (!document.fullscreenElement) { elem.requestFullscreen().catch(err => console.error(err)); } else { document.exitFullscreen(); } }
